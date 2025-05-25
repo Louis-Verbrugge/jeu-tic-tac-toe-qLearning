@@ -157,9 +157,9 @@ if os.path.exists('Q_table.pkl'):
     with open('Q_table.pkl', 'rb') as f:
         Q = pickle.load(f)
 
-print("Début de l'entraînement...")
-main(True)
-main(False)
+# print("Début de l'entraînement...")
+# main(True)
+# main(False)
 
 # Sauvegarder la Q-table après l'entraînement
 with open('Q_table.pkl', 'wb') as f:
