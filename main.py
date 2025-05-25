@@ -161,7 +161,7 @@ if os.path.exists('Q_table.pkl'):
 
 training = input("Voulez-vous entraîner l'IA ? (oui/non) ").strip().lower()
 
-if training not in ['oui', 'o', 'yes', 'y']:
+if training in ['oui', 'o', 'yes', 'y']:
     print("Début de l'entraînement...")
     main(True)
     main(False)
