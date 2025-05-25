@@ -18,40 +18,33 @@ def historical(historicalList, robot, tableBefore, action, tableNow):
 def update_Q_table(Q, historicalList, robotWin, egality):
     alpha = 0.1
     gamma = 0.8
-    reward_win = 10
-    reward_lose = -10
+    reward_win = 10000
+    reward_lose = -100000
+    reward_egality = 10000
 
 
     for robot, action in historicalList.items():
 
-        if egality:
-            pass
+      
 
-        reward = 0 if egality else reward_win if robot == robotWin else reward_lose
+        reward = reward_egality if egality else reward_win if robot == robotWin else reward_lose
 
-        for elem in action:
-
-
-            # print(elem)
-            # print("\n\n")
-            # print(f"{elem[0]} + \n + {elem[1]} + \n + {elem[2]}")
-            
-            s = convertTableToStr(elem[0])
-            a = elem[1]
-            s_next = convertTableToStr(elem[2])
+    
+        
+        s = convertTableToStr(action[-1][0])
+        a = action[-1][1]
+        s_next = convertTableToStr(action[-1][2])
 
 
-            # print(f"s: {s}, type: {type(s)}")
-            # print(f"s_next: {s_next}, type: {type(s_next)}")
+        if s not in Q:
+            Q[s] = np.zeros(9)  # 9 actions possibles
 
-            if s not in Q:
-                Q[s] = np.zeros(9)  # 9 actions possibles
-
-            if s_next not in Q:
-                Q[s_next] = np.zeros(9)
+        if s_next not in Q:
+            Q[s_next] = np.zeros(9)
 
 
-            Q[s][a] = int(Q[s][a] + alpha * (reward + gamma * np.max(Q[s_next]) - Q[s][a]))
+        Q[s][a] = Q[s][a] + alpha * (reward + gamma * np.max(Q[s_next]) - Q[s][a])
+
 
 
 def convertTableToStr(table):
