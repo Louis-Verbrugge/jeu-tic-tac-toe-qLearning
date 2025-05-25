@@ -15,7 +15,7 @@ L'algorithme de **Q-learning** est une méthode d'apprentissage par renforcement
 - **Gamma (facteur de récompense)** : 0.8
 - **Récompense de victoire** : +10000
 - **Récompense de défaite** : -10000
-- **Récompense d'égalité** : +100
+- **Récompense d'égalité** : +10000
 - **Épsilon (exploration vs exploitation)** : diminue progressivement pour favoriser l'exploitation à mesure que l'agent apprend.
 
 ## Structure du projet
